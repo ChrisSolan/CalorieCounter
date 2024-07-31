@@ -22,3 +22,4 @@ mongoose.connect(URI)
 app.listen(port, () => console.log(`SERVER STARTED at ${port}!`))
 
 module.exports = app;
+//export default app; If the above line doesnt work
