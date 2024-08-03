@@ -5,14 +5,15 @@ const mongoose = require('mongoose');
 const app = express();
 const URI = process.env.MONGODB_URI;
 const port = process.env.PORT || 3005;
+const  { userRouter } = require('./routes/users.js');
 
 app.use(express.json()); //converts data from the Frontend to JSON for the server to understand it
 app.use(cors()); //allows for API requests from the frontend
 app.get("/", (req, res) => {
-    res.status(200).json({message: "Hello World!", MongoMessage: mongomessage});
+    res.status(200).json({message: "Hello World!"});
 });
 
-//app.use("/auth", userRouter);
+app.use("/auth", userRouter);
 //app.use("/recipes", recipesRouter);
 
 mongoose.connect(URI)
@@ -22,4 +23,3 @@ mongoose.connect(URI)
 app.listen(port, () => console.log(`SERVER STARTED at ${port}!`))
 
 module.exports = app;
-//export default app; If the above line doesnt work
