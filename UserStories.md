@@ -3,9 +3,9 @@
 - [ ] As a user, I want to login and register because my food items that I eat need to be saved to my account
 - [ ] As a developer, I need to authenticate my users credientials becuase only humans should have an account and login to the correct account only
 - [ ] As a user, I need to see the nutritional facts of a food item so that I know the calories, macros, and servings
-- [ ] As a developer, I need to have a schema of what a food item should be and what it includes
-- [ ] As a user, I want to add any food items that are not already in the databasew
-- [ ] As a developer, I want to make sure that users add food items that correspond to the proper schema so that the food items are correct and don't have unrelated fields
+- [x] As a developer, I need to have a schema of what a food item should be and what it includes
+- [x] As a user, I want to add any food items that are not already in the database
+- [x] As a developer, I want to make sure that users add food items that correspond to the proper schema so that the food items are correct and don't have unrelated fields
 - [ ] As a user, I want to set a calorie goal and track the calories of the foods I eat for the day so that I can hit my weight and body goals
 - [ ] As a developer, I need to set a counter for calories that is updated whenever the user adds a food item so that the calories are tracked
 - [ ] As a user, I want to organize my meals into 3 categories: Breakfast, Lunch, and Dinner so that I know what I'm eating and when I ate 
