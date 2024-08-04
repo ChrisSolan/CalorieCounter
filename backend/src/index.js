@@ -14,7 +14,6 @@ app.get("/", (req, res) => {
 });
 
 app.use("/auth", userRouter);
-//app.use("/recipes", recipesRouter);
 
 mongoose.connect(URI)
     .then(() => console.log("Connected to MongoDB"))
