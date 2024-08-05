@@ -9,6 +9,7 @@ router.post('/register', async (req, res) => {
     const {username, password} = req.body;
     const user = await UserModel.findOne({username});
 
+    //if the user already exists, reply with the message below
     if (user) { return res.json({message: "User Alredy Exists!"}); }
 
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -18,7 +19,23 @@ router.post('/register', async (req, res) => {
 });
 
 router.post('/login', async (req, res) => {
-    
+    const {username, password} = req.body;
+    const user = await UserModel.findOne({username});
+
+    //if the user doesn't exist, reply with the message below
+    if (!user) { return res.json({message: "User Doesn't Exist!"}); }
+
+    const isPasswordValid = await bcrypt.compare(password, user.password); //compares the hashed password of an established user to the password we are inputing for login
+    if (!isPasswordValid) {
+        return res.json({message: "Username or Password Is Incorrect!"});
+    }
+
+    //Use an ENV variable for the secret, because it will be used to verifiy if the token is the same across sessions
+    const token = jwt.sign({id: user._id}, jwtToken); //the secret was replaced with the ENV that we stored the secret in for extra security
+
+    res.json({token: token, userID: user._id});
+
+
 });
 
 module.exports = {userRouter: router};
