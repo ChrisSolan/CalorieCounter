@@ -4,7 +4,7 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const app = express();
 const URI = process.env.MONGODB_URI;
-const port = process.env.PORT || 3005;
+const port = process.env.PORT || 3010;
 const { userRouter } = require('./routes/users.js');
 const { foodItemRouter } = require('./routes/foodItem.js');
 
