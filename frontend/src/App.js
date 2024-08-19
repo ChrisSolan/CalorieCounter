@@ -3,6 +3,8 @@ import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import {Navbar} from './components/navbar.js';
 import {Home} from './pages/home.js';
 import { Auth } from './pages/auth.js';
+import { ShowFood } from './pages/showFood.js';
+import { CreateFood } from './pages/createFood.js';
 
 function App() {
   return (
@@ -12,6 +14,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Home/>}/>
           <Route path='/auth' element={<Auth/>}/>
+          <Route path='/showFood' element={<ShowFood/>}/>
         </Routes>
       </Router>
     </div>

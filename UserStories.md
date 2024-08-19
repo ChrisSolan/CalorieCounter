@@ -1,7 +1,7 @@
 # User Stories
 
-- [ ] As a user, I want to login and register because my food items that I eat need to be saved to my account
-- [ ] As a developer, I need to authenticate my users credientials becuase only humans should have an account and login to the correct account only
+- [x] As a user, I want to login and register because my food items that I eat need to be saved to my account
+- [x] As a developer, I need to authenticate my users credientials becuase only humans should have an account and login to the correct account only
 - [ ] As a user, I need to see the nutritional facts of a food item so that I know the calories, macros, and servings
 - [x] As a developer, I need to have a schema of what a food item should be and what it includes
 - [x] As a user, I want to add any food items that are not already in the database

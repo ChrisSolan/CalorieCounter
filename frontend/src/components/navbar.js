@@ -12,7 +12,7 @@ export const Navbar = () => {
 
     return <div className='navbar'>
         <Link to= "/">Home</Link>
-        <Link to= "/auth">Auth</Link>
-        {<button onClick={logout}>Logout</button>}
+        <Link to= "/auth">Login/Register</Link>
+        {<button onClick={logout} className='logoutBtn'>Logout</button>}
     </div>
 }
