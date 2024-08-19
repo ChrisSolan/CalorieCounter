@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { FoodItemModel } = require('../models/FoodItemModel.js');
+const { UserModel } = require('./users.js');
 
 //route to create a food item
 router.post('/', async (req, res) => {
@@ -10,6 +11,15 @@ router.post('/', async (req, res) => {
         res.json(response);
     } catch (err) {
         res.json(err); 
+    }
+});
+
+router.get('/', async (req, res) => {
+    try {
+        const response = await FoodItemModel.find({});
+        res.json(response);
+    } catch (err) {
+        res.json(err);
     }
 });
 

@@ -4,9 +4,9 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const app = express();
 const URI = process.env.MONGODB_URI;
-const port = process.env.PORT || 3005;
-const  { userRouter } = require('./routes/users.js');
-const  { foodItemRouter } = require('./routes/foodItem.js');
+const port = process.env.PORT || 3010;
+const { userRouter } = require('./routes/users.js');
+const { foodItemRouter } = require('./routes/foodItem.js');
 
 app.use(express.json()); //converts data from the Frontend to JSON for the server to understand it
 app.use(cors()); //allows for API requests from the frontend
