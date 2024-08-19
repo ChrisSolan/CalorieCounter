@@ -8,12 +8,6 @@ export const Home = () => { //maybe have a setCategory state var for knowing if 
     const [foodItems, setFoodItems] = useState([]); //holds the state of an array of FoodItems
     const [addedFoodItems, setAddedFoodItems] = useState([]);
 
-    const onClick = async (event) => {
-        event.preventDefault(); //stops the page from refreshing when onClick is executed
-        navigate('/showFood');
-    }
-
-
     return (
         <div>
             <h1>Calories: </h1>
@@ -21,11 +15,11 @@ export const Home = () => { //maybe have a setCategory state var for knowing if 
             <p>Protein: </p>
             <p>Fat: </p>
             <h3>Breakfast</h3>
-            <button onClick={onClick}>Add Food</button>
+            <button onClick={() => navigate('/showFood')}>Add Food</button>
             <h3>Lunch</h3>
-            <button onClick={onClick}>Add Food</button>
+            <button onClick={() => navigate('/showFood')}>Add Food</button>
             <h3>Dinner</h3>
-            <button onClick={onClick}>Add Food</button>
+            <button onClick={() => navigate('/showFood')}>Add Food</button>
         </div>
     )
 
