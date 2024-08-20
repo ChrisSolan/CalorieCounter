@@ -5,6 +5,7 @@ import {Home} from './pages/home.js';
 import { Auth } from './pages/auth.js';
 import { ShowFood } from './pages/showFood.js';
 import { CreateFood } from './pages/createFood.js';
+import { FoodDetails } from './pages/foodDetails.js';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path='/auth' element={<Auth/>}/>
           <Route path='/showFood' element={<ShowFood/>}/>
           <Route path='/createFood' element={<CreateFood/>}/>
+          <Route path='/showFood/:id' element={<FoodDetails/>}/>
         </Routes>
       </Router>
     </div>
