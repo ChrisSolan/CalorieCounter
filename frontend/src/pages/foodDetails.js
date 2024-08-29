@@ -2,12 +2,13 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom'; //lets us navigate to where we specify
 import { useParams } from 'react-router-dom';
+import { useFoodContext } from '../Contexts/FoodContext';
 
 export const FoodDetails = () => { //maybe have a setCategory state var for knowing if a food is for breakfast or other...
     const navigate = useNavigate();
     const [foodItem, setFoodItem] = useState(); //holds the state of an array of FoodItems
-    const [addedFoodItems, setAddedFoodItems] = useState([]);
     const { id } = useParams();
+    const {addFoodItem} = useFoodContext();
 
     useEffect(() => {
         const fetchFoodItems = async () => {
@@ -22,6 +23,13 @@ export const FoodDetails = () => { //maybe have a setCategory state var for know
         fetchFoodItems();
     }, [id]);
 
+    const handleAddFood = (foodItem, event) => {
+        //stops the feature of clicking on a foodItem to see more information if the button is clicked
+        event.stopPropagation(); 
+        addFoodItem(foodItem);
+        navigate('/');
+    }
+
     if(!foodItem) return <p>Loading...</p>
 
     return (
@@ -33,6 +41,7 @@ export const FoodDetails = () => { //maybe have a setCategory state var for know
             <p>Fat: {foodItem.macros.fat}g</p>
             <p>Protein: {foodItem.macros.protein}g</p>
             <img src={foodItem.imageUrl} alt= {foodItem.name}/>
+            <button onClick={(event) => handleAddFood(foodItem, event)}>+Add Food</button>
         </div>
     )
 
