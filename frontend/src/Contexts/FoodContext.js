@@ -10,15 +10,17 @@ export const FoodProvider = ({ children }) => {
   const [carbs, setCarbs] = useState(0);
   const [protein, setProtein] = useState(0);
   const [fat, setFat] = useState(0);
+  const [meal, setMeal] = useState('');
 
-  const addFoodItem = (foodItem) => {
+  const addFoodItem = (foodItem, meal) => {
     //takes a state as an arugment (prevItems in this case), then spreads it into a new state or array and appends the foodItem at the end
-    setConsumedItems((consumed) => [...consumed, foodItem]); //might need to be curly braces instead of brackets
+    setConsumedItems((consumed) => [...consumed, {...foodItem, meal}]); //we add the meal to the foodItem we are adding to consumedItems
     setCalories((calories) => calories + foodItem.calories);
     setCarbs((carbs) => carbs + foodItem.macros.carbs);
     setProtein((protein) => protein + foodItem.macros.protein);
     setFat((fat) => fat + foodItem.macros.fat);
   };
+
   return (
     <FoodContext.Provider
       value={{
@@ -27,12 +29,14 @@ export const FoodProvider = ({ children }) => {
         carbs,
         protein,
         fat,
+        meal,
         setConsumedItems,
         setCalories,
         setCarbs,
         setProtein,
         setFat,
         addFoodItem,
+        setMeal
       }}
     >
       {children}

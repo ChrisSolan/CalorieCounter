@@ -9,6 +9,7 @@ export const FoodDetails = () => { //maybe have a setCategory state var for know
     const [foodItem, setFoodItem] = useState(); //holds the state of an array of FoodItems
     const { id } = useParams();
     const {addFoodItem} = useFoodContext();
+    const {meal} = useFoodContext();
 
     useEffect(() => {
         const fetchFoodItems = async () => {
@@ -23,10 +24,8 @@ export const FoodDetails = () => { //maybe have a setCategory state var for know
         fetchFoodItems();
     }, [id]);
 
-    const handleAddFood = (foodItem, event) => {
-        //stops the feature of clicking on a foodItem to see more information if the button is clicked
-        event.stopPropagation(); 
-        addFoodItem(foodItem);
+    const handleAddFood = (foodItem) => {
+        addFoodItem(foodItem, meal);
         navigate('/');
     }
 

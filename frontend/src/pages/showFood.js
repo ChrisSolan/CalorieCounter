@@ -8,6 +8,7 @@ export const ShowFood = () => {
     const navigate = useNavigate();
     const [foodItems, setFoodItems] = useState([]); //holds the state of an array of FoodItems
     const {addFoodItem} = useFoodContext();
+    const {meal} = useFoodContext();
 
     //Anything in this hook will happen when the page is rendered and loaded
     useEffect(() => {
@@ -26,7 +27,7 @@ export const ShowFood = () => {
     const handleAddFood = (foodItem, event) => {
         //stops the feature of clicking on a foodItem to see more information if the button is clicked
         event.stopPropagation(); 
-        addFoodItem(foodItem);
+        addFoodItem(foodItem, meal);
         navigate('/');
     }
 
