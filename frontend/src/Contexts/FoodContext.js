@@ -21,6 +21,15 @@ export const FoodProvider = ({ children }) => {
     setFat((fat) => fat + foodItem.macros.fat);
   };
 
+  //This is for removing a foodItem from the consumed food items displayed in home.js
+  const removeFoodItem = (foodItem, meal) => {
+    setConsumedItems((consumed) => consumed.filter((item) => !(item._id === foodItem._id && item.meal === meal))); //filters out and creates a new consumedItems array but without the provided foodItem and ID
+    setCalories((calories) => calories - foodItem.calories);
+    setCarbs((carbs) => carbs - foodItem.macros.carbs);
+    setProtein((protein) => protein - foodItem.macros.protein);
+    setFat((fat) => fat - foodItem.macros.fat);
+  };
+
   return (
     <FoodContext.Provider
       value={{
@@ -36,7 +45,8 @@ export const FoodProvider = ({ children }) => {
         setProtein,
         setFat,
         addFoodItem,
-        setMeal
+        setMeal,
+        removeFoodItem,
       }}
     >
       {children}
