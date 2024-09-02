@@ -9,6 +9,8 @@ export const Home = () => { //maybe have a setCategory state var for knowing if 
     //the state names have to be the same as the exported states from useAddFoodItem
     const { calories, carbs, protein, fat, setCalories, setCarbs, setProtein, setFat, setMeal, consumedItems, setConsumedItems } = useFoodContext();
     const breakfastItems = consumedItems.filter(foodItem => foodItem.meal === 'Breakfast');
+    const lunchItems = consumedItems.filter(foodItem => foodItem.meal === 'Lunch');
+    const dinnerItems = consumedItems.filter(foodItem => foodItem.meal === 'Dinner');
 
     const handleCalorieReset = () => {
         setCalories(0);
@@ -38,9 +40,21 @@ export const Home = () => { //maybe have a setCategory state var for knowing if 
                 ))}
             </ul>
             <button onClick={() => handleMeal('Breakfast')}>Add Food</button>
+
             <h3>Lunch</h3>
+            <ul>
+                {lunchItems.map(foodItem => (
+                    <li key={foodItem._id}>{foodItem.name} - {foodItem.calories} cal</li>
+                ))}
+            </ul>
             <button onClick={() => handleMeal('Lunch')}>Add Food</button>
+
             <h3>Dinner</h3>
+            <ul>
+                {dinnerItems.map(foodItem => (
+                    <li key={foodItem._id}>{foodItem.name} - {foodItem.calories} cal</li>
+                ))}
+            </ul>
             <button onClick={() => handleMeal('Dinner')}>Add Food</button>
         </div>
     )
