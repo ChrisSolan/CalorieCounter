@@ -23,4 +23,18 @@ router.get('/', async (req, res) => {
     }
 });
 
+router.get('/:id', async (req, res) => {
+    const { id } = req.params;
+    try {
+        const response = await FoodItemModel.findById(id);
+
+        if(!response) {
+            return res.status(404).json({message: "Food Item Not Found"});
+        }
+        res.json(response);
+    } catch (err) {
+        res.json(err);
+    }
+});
+
 module.exports = {foodItemRouter: router};

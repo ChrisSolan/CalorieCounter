@@ -11,7 +11,8 @@ const FoodItemSchema = new mongoose.Schema({
         carbs: {type:Number, require: true},
         fat: {type:Number, require: true},
         protein: {type:Number, require: true}
-    }
+    },
+    imageUrl: { type: String, required: true },
 });
 
 module.exports = { FoodItemModel: mongoose.model("foodItems", FoodItemSchema) || mongoose.models.foodItems };
