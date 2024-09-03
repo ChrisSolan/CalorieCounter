@@ -16,7 +16,7 @@ export const Auth = () => {
 const Login = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const [ , setCookies] = useCookies(["access_token"]);
+    const [cookies , setCookies] = useCookies(["access_token"]);
     const navigate = useNavigate();
 
     const onSubmit = async(event) => {
@@ -28,8 +28,8 @@ const Login = () => {
                 password,
             });
 
-            setCookies("access_token", response.data.token);
-            window.localStorage.setItem("userID", response.data.userID);
+            setCookies("access_token", response.data.token); //token stored in cookies
+            window.localStorage.setItem("userID", response.data.userID); //userID stored in local storage
             navigate("/");
         } catch (err) {
             console.error(err);

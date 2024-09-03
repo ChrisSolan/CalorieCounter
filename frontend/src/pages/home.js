@@ -13,7 +13,7 @@ export const Home = () => { //maybe have a setCategory state var for knowing if 
     const lunchItems = consumedItems.filter(foodItem => foodItem.meal === 'Lunch');
     const dinnerItems = consumedItems.filter(foodItem => foodItem.meal === 'Dinner');
 
-
+    const userID = window.localStorage.getItem("userID"); //for logging
 
     const handleCalorieReset = () => {
         setCalories(0);
@@ -40,7 +40,7 @@ export const Home = () => { //maybe have a setCategory state var for knowing if 
             <h3>Breakfast</h3>
             <ul>
                 {breakfastItems.map(foodItem => (
-                    <li key={foodItem._id}>{foodItem.name} - {foodItem.calories} cal <button onClick={() => removeFoodItem(foodItem, 'Breakfast')}>Delete</button></li>
+                    <li key={foodItem._id}>{foodItem.name} - {foodItem.calories} cal <button onClick={() => removeFoodItem(foodItem, 'Breakfast')}>Remove Item</button></li>
                 ))}
             </ul>
             <button onClick={() => handleMeal('Breakfast')}>Add Food</button>
@@ -48,7 +48,7 @@ export const Home = () => { //maybe have a setCategory state var for knowing if 
             <h3>Lunch</h3>
             <ul>
                 {lunchItems.map(foodItem => (
-                    <li key={foodItem._id}>{foodItem.name} - {foodItem.calories} cal <button onClick={() => removeFoodItem(foodItem, 'Lunch')}>Delete</button></li>
+                    <li key={foodItem._id}>{foodItem.name} - {foodItem.calories} cal <button onClick={() => removeFoodItem(foodItem, 'Lunch')}>Remove Item</button></li>
                 ))}
             </ul>
             <button onClick={() => handleMeal('Lunch')}>Add Food</button>
@@ -56,7 +56,7 @@ export const Home = () => { //maybe have a setCategory state var for knowing if 
             <h3>Dinner</h3>
             <ul>
                 {dinnerItems.map(foodItem => (
-                    <li key={foodItem._id}>{foodItem.name} - {foodItem.calories} cal <button onClick={() => removeFoodItem(foodItem, 'Dinner')}>Delete</button></li>
+                    <li key={foodItem._id}>{foodItem.name} - {foodItem.calories} cal <button onClick={() => removeFoodItem(foodItem, 'Dinner')}>Remove Item</button></li>
                 ))}
             </ul>
             <button onClick={() => handleMeal('Dinner')}>Add Food</button>

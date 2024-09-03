@@ -31,9 +31,11 @@ export const ShowFood = () => {
         navigate('/');
     }
 
+    
+
     return (
         <div className = "showFood">
-            <h1>All Food Items</h1>
+            <h1>All Food Items <button onClick={() => navigate('/createFood')}>Create Food Item</button></h1>
 
             <ul>
             {foodItems.map((foodItem) => (
