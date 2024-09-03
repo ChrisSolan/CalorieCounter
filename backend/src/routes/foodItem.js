@@ -2,9 +2,10 @@ const express = require('express');
 const router = express.Router();
 const { FoodItemModel } = require('../models/FoodItemModel.js');
 const { UserModel } = require('./users.js');
+const { verifyToken } = require('./users.js');
 
-//route to create a food item
-router.post('/', async (req, res) => {
+//route to create a food item, verifyToken makes it so that only authorized and logged in users can create foodItems
+router.post('/', verifyToken, async (req, res) => {
     const foodItem = new FoodItemModel(req.body);
     try {
         const response = await foodItem.save();
@@ -14,6 +15,7 @@ router.post('/', async (req, res) => {
     }
 });
 
+//returns all foodItems
 router.get('/', async (req, res) => {
     try {
         const response = await FoodItemModel.find({});
@@ -23,6 +25,18 @@ router.get('/', async (req, res) => {
     }
 });
 
+//gets a User's created food items
+router.get('/createdfoodItems/:userID', async (req, res) => {
+    try {
+        const user = await UserModel.findById(req.params.userID);
+        res.json({ createdFoodItems: user?.createdFoodItems});
+    } catch (err) {
+        res.json(err);
+    }
+})
+
+
+//Used for the extended food details page
 router.get('/:id', async (req, res) => {
     const { id } = req.params;
     try {

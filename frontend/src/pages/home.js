@@ -13,7 +13,7 @@ export const Home = () => { //maybe have a setCategory state var for knowing if 
     const lunchItems = consumedItems.filter(foodItem => foodItem.meal === 'Lunch');
     const dinnerItems = consumedItems.filter(foodItem => foodItem.meal === 'Dinner');
 
-    const userID = window.localStorage.getItem("userID"); //for logging
+    const userID = window.localStorage.getItem("userID");
 
     const handleCalorieReset = () => {
         setCalories(0);

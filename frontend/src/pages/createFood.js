@@ -20,7 +20,8 @@ export const CreateFood = () => {
             fat: 0,
             protein: 0
         },
-        imageUrl: ""
+        imageUrl: "",
+        userOwner: userID
     });
 
     const handleChange = (event) => { //the event happens whenever the input field is changed
