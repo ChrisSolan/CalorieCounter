@@ -7,8 +7,10 @@ export const CreateFood = () => {
 
     const navigate = useNavigate();
     const userID = window.localStorage.getItem("userID");
+    const [createdFoodItems, setCreatedFoodItems] = useState([]);
     const [cookies, setCookies] = useCookies(['access_token']);
     const [foodItem, setFoodItem] = useState({ //might need to add a property to store the user who owns the created foodItem in both here and the backend
+        
         name : '',
         servingSize: {
             size: 0,
@@ -33,16 +35,23 @@ export const CreateFood = () => {
     const onSubmit = async(event) => { 
         event.preventDefault();
         try {
-            await axios.post('http://localhost:3010/foodItems/', foodItem, {
-                headers: { authorization: cookies.access_token}
-            });
-            alert("Food Item Created!");
+            const response = await axios.post('http://localhost:3010/foodItems/', foodItem, 
+                { headers: { authorization: cookies.access_token} }
+            );
+
+            const createdFoodItem = response.data;
+            await axios.put('http://localhost:3010/foodItems/', {
+                    foodItemID: createdFoodItem._id,
+                    userID
+                },
+                { headers: { authorization: cookies.access_token} }
+            );
+            alert("Food Item Created and added to your meals!");
             navigate("/showFood"); //redirect back to the show food page
         } catch (err) {
             console.log(err);
         }
     }
-
 
     return (
         <div className = "createFood">

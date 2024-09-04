@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 import axios from "axios"
-import { useCookies } from "react-cookie"
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
+import { cookies } from "react";
 
 
 export const MyMeals = () => {
@@ -23,21 +23,26 @@ export const MyMeals = () => {
 
         fetchCreatedfoodItems();
 
-    }, []);
+    }, [userID]);
+
 
     return (
         <div className="myMeals">
             <h1>My Meals</h1>
             <ul>
-                {createdFoodItems.map((foodItem) => (
-                    <li key={foodItem._id}>
-                        <h2>{foodItem.name}</h2>
-                        <p>{foodItem.servingSize.size} {foodItem.servingSize.unit}</p>
-                        <p>{foodItem.calories} Cal</p>
-                        <img src={foodItem.imageUrl} alt= {foodItem.name}/>
-                        <button onClick={() => navigate(`/showFood/${foodItem._id}`)}> </button>
-                    </li>
-                ))}
+            {createdFoodItems.length > 0 ? (
+                    createdFoodItems.map((foodItem) => (
+                        <li key={foodItem._id}>
+                            <h2>{foodItem.name}</h2>
+                            <p>{foodItem.servingSize.size} {foodItem.servingSize.unit}</p>
+                            <p>{foodItem.calories} Cal</p>
+                            <img src={foodItem.imageUrl} alt= {foodItem.name}/>
+                        </li>
+                    ))
+                ) : (
+                    <p>No Meals Found</p>
+                )}
+
             </ul>
         </div>
     )
