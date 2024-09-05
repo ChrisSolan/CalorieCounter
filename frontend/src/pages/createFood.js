@@ -56,7 +56,8 @@ export const CreateFood = () => {
     return (
         <div className = "createFood">
             <h2>Create Food Item</h2>
-            <form onSubmit={onSubmit}>
+            {cookies.access_token ? (
+             <form onSubmit={onSubmit}>
                 <label htmlFor='name'>Name: </label>
                 <input type='text' id='name' name='name' onChange={handleChange}/>
 
@@ -80,9 +81,13 @@ export const CreateFood = () => {
                 <label htmlFor='imageUrl'>imageUrl: </label>
                 <input type='text' id='imageUrl' name='imageUrl' onChange={handleChange}/>
 
- 
-            <button type='submit'>Create Food Item</button>
+                <button type='submit'>Create Food Item</button>
             </form>
+
+            ): (
+               <h3>Login to create a food item</h3>
+            )}
+           
         </div>
     )
 };

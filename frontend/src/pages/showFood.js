@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useFoodContext } from '../Contexts/FoodContext';
+import { useCookies } from 'react-cookie';
 
 
 export const ShowFood = () => {
@@ -9,6 +10,7 @@ export const ShowFood = () => {
     const [foodItems, setFoodItems] = useState([]); //holds the state of an array of FoodItems
     const {addFoodItem} = useFoodContext();
     const {meal} = useFoodContext();
+    const [cookies, setCookies] = useCookies(['access_token']);
 
     //Anything in this hook will happen when the page is rendered and loaded
     useEffect(() => {
@@ -36,7 +38,12 @@ export const ShowFood = () => {
     return (
         <div className = "showFood">
             <h1>All Food Items <button onClick={() => navigate('/createFood')}>Create Food Item</button></h1>
+            {cookies.access_token ? (
             <button onClick={() => navigate('/myMeals')}>my Meals</button>
+            ): (
+                <h3>Login to access My Meals!</h3>
+            )}
+           
 
             <ul>
             {foodItems.map((foodItem) => (
