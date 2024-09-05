@@ -7,12 +7,16 @@ export const Navbar = () => {
     const [cookies, setCookies] = useCookies(['access_token']);
     const logout = () => {
         setCookies("access_token", ""); //clear and set the cookies to empty
+        window.localStorage.removeItem("userID");
         navigate("/auth");
     }
 
     return <div className='navbar'>
         <Link to= "/">Home</Link>
-        <Link to= "/auth">Login/Register</Link>
-        {<button onClick={logout} className='logoutBtn'>Logout</button>}
+        {!cookies.access_token ? (
+            <Link to='/auth'>Login/Register</Link>
+            ): (
+                <button onClick={logout}>Logout</button>
+            )}
     </div>
 }
