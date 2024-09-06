@@ -24,18 +24,31 @@ export const MyMeals = () => {
 
     }, [userID]);
 
+    const onDelete = async(foodItem) => {
+        try {
+            await axios.delete(`http://localhost:3010/foodItems/${foodItem._id}`);
+            alert(`Food Item (${foodItem.name}) deleted!`);
+            setCreatedFoodItems( (createdFoodItems) => {
+                createdFoodItems.filter((item) => item._id !== foodItem._id); //return a new createdFoodItems state without the deleted foodItem
+            });
+
+        } catch (err) {
+            console.log(err);
+        }
+    }
 
     return (
         <div className="myMeals">
             <h1>My Meals</h1>
             <ul>
-            {createdFoodItems.length > 0 ? (
+            {createdFoodItems && createdFoodItems.length > 0 ? (
                     createdFoodItems.map((foodItem) => (
                         <li key={foodItem._id}>
                             <h2>{foodItem.name}</h2>
                             <p>{foodItem.servingSize.size} {foodItem.servingSize.unit}</p>
                             <p>{foodItem.calories} Cal</p>
                             <img src={foodItem.imageUrl} alt= {foodItem.name}/>
+                            <button onClick={() => onDelete(foodItem)}>Delete this food item</button>
                         </li>
                     ))
                 ) : (

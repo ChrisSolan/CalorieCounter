@@ -69,4 +69,16 @@ router.get('/:id', async (req, res) => {
     }
 });
 
+router.delete('/:id', async (req, res) => {
+    try {
+        const response = await FoodItemModel.findByIdAndDelete(req.params.id);
+        if(!response) {
+            return res.status(404).json({message: "Food Item Not Found"});
+        }
+        res.json(response);
+    } catch (err) {
+        res.json(err);
+    }
+})
+
 module.exports = {foodItemRouter: router};
