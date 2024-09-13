@@ -1,14 +1,10 @@
 import { useState, useEffect } from "react"
 import axios from "axios"
-import { useNavigate } from "react-router-dom";
-
 
 export const MyMeals = () => {
 
     const [createdFoodItems, setCreatedFoodItems] = useState([]);
     const userID = window.localStorage.getItem("userID");
-    const navigate = useNavigate();
-
     
     useEffect(() => {
         const fetchCreatedfoodItems = async () => {

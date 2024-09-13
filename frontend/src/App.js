@@ -1,4 +1,3 @@
-import './App.css';
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import {Navbar} from './components/navbar.js';
 import {Home} from './pages/home.js';
@@ -8,6 +7,7 @@ import { CreateFood } from './pages/createFood.js';
 import { FoodDetails } from './pages/foodDetails.js';
 import { MyMeals } from './pages/myMeals.js';
 import { FoodProvider } from './Contexts/FoodContext.js';
+
 
 function App() {
   return (

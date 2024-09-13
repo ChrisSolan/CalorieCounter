@@ -7,8 +7,7 @@ export const CreateFood = () => {
 
     const navigate = useNavigate();
     const userID = window.localStorage.getItem("userID");
-    const [createdFoodItems, setCreatedFoodItems] = useState([]);
-    const [cookies, setCookies] = useCookies(['access_token']);
+    const [cookies, ] = useCookies(['access_token']);
     const [foodItem, setFoodItem] = useState({ //might need to add a property to store the user who owns the created foodItem in both here and the backend
         
         name : '',

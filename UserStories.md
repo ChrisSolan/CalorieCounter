@@ -13,7 +13,7 @@
 - [x] As a developer, I want to visually display the food items in the 3 categories and have a button that allows the user to add their food item so that they can track when they eat
 - [x] As a User, I want to finalize what I ate for the day so I can start again for a new day
 - [x] As a Developer, I need to add a button that allows the user to end their tracking for the day so that they can track the next day's meals
-- [ ] As a User, I want to be able to search for food items so that I can add them easily, especially when there's a lot of food items
-- [ ] As a Developer, I need to add a search bar that only allows strings so that only food item names can be searched and returned
+- [x] As a User, I want to be able to search for food items so that I can add them easily, especially when there's a lot of food items
+- [x] As a Developer, I need to add a search bar that only allows strings so that only food item names can be searched and returned
 - [x] As a User, I want to create my own foodItems because there are some niche foods that may not be in the established food database
 - [x] As a Developer, I want to have a create food page where users can enter information about the food item (pertaining to the established schema in the backend)

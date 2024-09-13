@@ -11,7 +11,7 @@ export const ShowFood = () => {
     const [query, setQuery] = useState(""); //tracks the state of our qeury or search
     const {addFoodItem} = useFoodContext();
     const {meal} = useFoodContext();
-    const [cookies, setCookies] = useCookies(['access_token']);
+    const [cookies, ] = useCookies(['access_token']);
 
     //Anything in this hook will happen when the page is rendered and loaded
     useEffect(() => {
@@ -43,15 +43,16 @@ export const ShowFood = () => {
     
 
     return (
-        <div className = "showFood">
-            <h1>All Food Items <button onClick={() => navigate('/createFood')}>Create Food Item</button></h1>
+        <div className = "showFood bg-[#ACD7EC] min-h-screen text-center py-[15px]">
+            <h1>All Food Items <button className='rounded-full bg-[#F1AB86] px-[18px] py-[6px] font-medium' onClick={() => navigate('/createFood')}>Create Food Item</button></h1>
             {cookies.access_token ? (
-            <button onClick={() => navigate('/myMeals')}>my Meals</button>
+            <button className='rounded-full bg-[#F1AB86] px-[18px] py-[6px] font-medium' onClick={() => navigate('/myMeals')}>my Meals</button>
             ): (
                 <h3>Login to access My Meals!</h3>
             )}
+            <br/>
             <label htmlFor='search'>Search Food Items</label>
-            <input type='search' id='search' value={query} onChange={event => setQuery(event.target.value)}/>
+            <input type='search' id='search' className='border-2 border-black mx-[5px]' value={query} onChange={event => setQuery(event.target.value)}/>
            
 
             <ul>
@@ -62,7 +63,7 @@ export const ShowFood = () => {
                         <p>{foodItem.calories} Cal</p>
                         <img src={foodItem.imageUrl} alt= {foodItem.name}/>
                         <h3>Click for more info...</h3>
-                        <button onClick={(event) => handleAddFood(foodItem, event)}>+Add Food</button>
+                        <button className="rounded-full bg-[#00798C] font-medium px-[18px] py-[6px] text-white" onClick={(event) => handleAddFood(foodItem, event)}>+Add Food</button>
                     </li>
                 ))}
             </ul>

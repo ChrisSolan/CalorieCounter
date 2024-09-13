@@ -16,7 +16,7 @@ export const Auth = () => {
 const Login = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const [cookies , setCookies] = useCookies(["access_token"]);
+    const [, setCookies] = useCookies(["access_token"]);
     const navigate = useNavigate();
 
     const onSubmit = async(event) => {
@@ -37,18 +37,18 @@ const Login = () => {
     }
     
     return (
-        <div className='auth-container'>
+        <div className='auth-container text-center bg-[#ACD7EC] items-center justify-center py-[15px]'>
             <form onSubmit={onSubmit}>
                 <h2>Login</h2>
-                <div className='form-group'>
+                <div className='form-group py-[3px]'>
                     <label htmlFor='username'>Username: </label>
-                    <input type='text' id='username' value={username} onChange={(event) => setUsername(event.target.value)}/>
+                    <input type='text' id='username' className='border-2 border-black' value={username} onChange={(event) => setUsername(event.target.value)}/>
                 </div>
-                <div className='form-group'>
+                <div className='form-group  pb-[10px]'>
                     <label htmlFor='password'>Password: </label>
-                    <input type='text' id='password' value={password} onChange={(event) => setPassword(event.target.value)}/>
+                    <input type='text' id='password' className='border-2 border-black' value={password} onChange={(event) => setPassword(event.target.value)}/>
                 </div>
-                <button type='submit'>Login</button>
+                <button className='rounded-full bg-[#00798C] font-medium px-[18px] py-[6px] text-white' type='submit'>Login</button>
             </form>
         </div>
     );
@@ -73,18 +73,18 @@ const Register = () => {
     }
     
     return (
-        <div className='auth-container'>
+        <div className='auth-container text-center bg-[#ACD7EC] min-h-screen justify-center'>
             <form onSubmit={onSubmit}>
                 <h2>Register</h2>
-                <div className='form-group'>
+                <div className='form-group py-[3px]'>
                     <label htmlFor='username'>Username: </label>
-                    <input type='text' id='username' value={username} onChange={(event) => setUsername(event.target.value)}/>
+                    <input type='text' id='username' className='border-2 border-black' value={username} onChange={(event) => setUsername(event.target.value)}/>
                 </div>
-                <div className='form-group'>
+                <div className='form-group  pb-[10px]'>
                     <label htmlFor='password'>Password: </label>
-                    <input type='text' id='password' value={password} onChange={(event) => setPassword(event.target.value)}/>
+                    <input type='text' id='password' className='border-2 border-black' value={password} onChange={(event) => setPassword(event.target.value)}/>
                 </div>
-                <button type='submit'>Register</button>
+                <button className='rounded-full bg-[#00798C] font-medium px-[18px] py-[6px] text-white' type='submit'>Register</button>
             </form>
         </div>
     );
