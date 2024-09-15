@@ -32,15 +32,18 @@ export const FoodDetails = () => { //maybe have a setCategory state var for know
     if(!foodItem) return <p>Loading...</p>
 
     return (
-        <div className = "foodDetails">
+        <div className = "foodDetails bg-[#ACD7EC] min-h-screen">
+            <div className='flex items-center justify-center space-x-4 text-left py-[15px]'>
+            <img src={foodItem.imageUrl} alt= {foodItem.name} className=' h-[150px] w-[150px] rounded-full object-cover'/>
             <h2>{foodItem.name}</h2>
             <p>{foodItem.servingSize.size} {foodItem.servingSize.unit}</p>
             <p>{foodItem.calories} Cal</p>
             <p>Carbs: {foodItem.macros.carbs}g</p>
             <p>Fat: {foodItem.macros.fat}g</p>
             <p>Protein: {foodItem.macros.protein}g</p>
-            <img src={foodItem.imageUrl} alt= {foodItem.name}/>
-            <button onClick={(event) => handleAddFood(foodItem, event)}>+Add Food</button>
+            <button className="rounded-full bg-[#00798C] font-medium px-[18px] py-[6px] text-white"  onClick={(event) => handleAddFood(foodItem, event)}>+Add Food</button>
+            </div>
+          
         </div>
     )
 

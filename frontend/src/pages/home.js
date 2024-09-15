@@ -16,6 +16,7 @@ export const Home = () => { //maybe have a setCategory state var for knowing if 
         setProtein(0);
         setFat(0);
         setConsumedItems([]);
+        
     }
 
     const handleMeal = (meal) => {
@@ -38,10 +39,10 @@ export const Home = () => { //maybe have a setCategory state var for knowing if 
             <h3>Breakfast</h3>
             <ul>
                 {breakfastItems.map(foodItem => (
-                    <li key={foodItem._id}>{foodItem.name} - {foodItem.calories} cal <button className='rounded-full bg-[#F1AB86] px-[18px] py-[6px] font-medium' onClick={() => removeFoodItem(foodItem, 'Breakfast')}>Remove Item</button></li>
+                    <li key={foodItem._id} className='my-[5px]'>{foodItem.name} - {foodItem.calories} cal <button className='rounded-full bg-[#F1AB86] px-[12px] py-[3px] font-medium' onClick={() => removeFoodItem(foodItem, 'Breakfast')}>Remove Item</button></li>
                 ))}
             </ul>
-            <button className="rounded-full bg-[#00798C] font-medium px-[18px] py-[6px] text-white" onClick={() => handleMeal('Breakfast')}>Add Food</button>
+            <button className="rounded-full bg-[#00798C] font-medium px-[18px] py-[6px] text-white" onClick={() => handleMeal('Breakfast')}>+Add Food</button>
 
             <h3>Lunch</h3>
             <ul>
@@ -49,7 +50,7 @@ export const Home = () => { //maybe have a setCategory state var for knowing if 
                     <li key={foodItem._id}>{foodItem.name} - {foodItem.calories} cal <button className='rounded-full bg-[#F1AB86] px-[18px] py-[6px] font-medium' onClick={() => removeFoodItem(foodItem, 'Lunch')}>Remove Item</button></li>
                 ))}
             </ul>
-            <button className="rounded-full bg-[#00798C] font-medium px-[18px] py-[6px] text-white" onClick={() => handleMeal('Breakfast')}>Add Food</button>
+            <button className="rounded-full bg-[#00798C] font-medium px-[18px] py-[6px] text-white" onClick={() => handleMeal('Breakfast')}>+Add Food</button>
 
             <h3>Dinner</h3>
             <ul>
@@ -57,7 +58,7 @@ export const Home = () => { //maybe have a setCategory state var for knowing if 
                     <li key={foodItem._id}>{foodItem.name} - {foodItem.calories} cal <button className='rounded-full bg-[#F1AB86] px-[18px] py-[6px] font-medium' onClick={() => removeFoodItem(foodItem, 'Dinner')}>Remove Item</button></li>
                 ))}
             </ul>
-            <button className="rounded-full bg-[#00798C] font-medium px-[18px] py-[6px] text-white" onClick={() => handleMeal('Breakfast')}>Add Food</button>
+            <button className="rounded-full bg-[#00798C] font-medium px-[18px] py-[6px] text-white" onClick={() => handleMeal('Breakfast')}>+Add Food</button>
         </div>
     )
 
