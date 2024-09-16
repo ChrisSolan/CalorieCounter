@@ -38,4 +38,14 @@ router.post('/login', async (req, res) => {
 
 });
 
-module.exports = {userRouter: router};
+const verifyToken = (req, res, next) => {
+    const token = req.headers.authorization;
+    if (token) {
+        jwt.verify(token, jwtToken, (err) => {
+            if (err) return res.sendStatus(403); //user is NOT verified
+            next();
+        });
+    } else { res.sendStatus(401); } //no token to verify, user is NOT verified
+}
+
+module.exports = {userRouter: router, verifyToken: verifyToken};

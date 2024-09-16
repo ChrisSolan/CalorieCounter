@@ -13,6 +13,11 @@ const FoodItemSchema = new mongoose.Schema({
         protein: {type:Number, require: true}
     },
     imageUrl: { type: String, required: true },
+    userOwner: {
+        type:mongoose.Schema.Types.ObjectId,
+        ref: "users",
+        required: true
+    }
 });
 
 module.exports = { FoodItemModel: mongoose.model("foodItems", FoodItemSchema) || mongoose.models.foodItems };
