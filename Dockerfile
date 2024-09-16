@@ -5,7 +5,7 @@ COPY frontend/package*.json ./
 RUN npm install
 COPY frontend/ ./
 ENV REACT_APP_DOCKER_BUILD=true
-ENV REACT_APP_API_URL=
+ENV REACT_APP_API_URL=https://caloriecounter-mzff.onrender.com/
 RUN npm run build
 
 #Stage 2 is the backend
