@@ -4,6 +4,15 @@ import { useNavigate } from 'react-router-dom';
 import { useFoodContext } from '../Contexts/FoodContext';
 import { useCookies } from 'react-cookie';
 
+let urlLink = null;
+
+if (process.env.REACT_APP_DOCKER_BUILD === 'true') {
+    urlLink = process.env.REACT_APP_API_URL;
+    console.log(`urlLink is ${urlLink}`);
+} else {
+    urlLink = process.env.REACT_APP_LOCAL_URL;
+    console.log("ERROR: DIDNT GET DOCKER BUILD");
+}
 
 export const ShowFood = () => {
     const navigate = useNavigate();
@@ -17,7 +26,8 @@ export const ShowFood = () => {
     useEffect(() => {
         const fetchFoodItems = async () => {
             try {
-                const response = await axios.get('http://localhost:3010/foodItems');
+                console.log(`urlLink is ${urlLink}`)
+                const response = await axios.get(`${urlLink}foodItems`);
                 setFoodItems(response.data);
             } catch (err) {
                 console.log(err);

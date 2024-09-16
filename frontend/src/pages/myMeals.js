@@ -1,6 +1,16 @@
 import { useState, useEffect } from "react"
 import axios from "axios"
 
+let urlLink = null;
+
+if (process.env.REACT_APP_DOCKER_BUILD === 'true') {
+    urlLink = process.env.REACT_APP_API_URL;
+    console.log(`urlLink is ${urlLink}`);
+} else {
+    urlLink = process.env.REACT_APP_LOCAL_URL;
+    console.log("ERROR: DIDNT GET DOCKER BUILD");
+}
+
 export const MyMeals = () => {
 
     const [createdFoodItems, setCreatedFoodItems] = useState([]);
@@ -9,7 +19,7 @@ export const MyMeals = () => {
     useEffect(() => {
         const fetchCreatedfoodItems = async () => {
             try {
-                const response = await axios.get(`http://localhost:3010/foodItems/createdfoodItems/${userID}`);
+                const response = await axios.get(`${urlLink}foodItems/createdfoodItems/${userID}`);
                 setCreatedFoodItems(response.data.createdFoodItems);
             } catch (err) {
                 console.log(err);
@@ -22,7 +32,7 @@ export const MyMeals = () => {
 
     const onDelete = async(foodItem) => {
         try {
-            await axios.delete(`http://localhost:3010/foodItems/${foodItem._id}`);
+            await axios.delete(`${urlLink}foodItems/${foodItem._id}`);
             alert(`Food Item (${foodItem.name}) deleted!`);
             setCreatedFoodItems( (createdFoodItems) => {
                 createdFoodItems.filter((item) => item._id !== foodItem._id); //return a new createdFoodItems state without the deleted foodItem

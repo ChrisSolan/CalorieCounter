@@ -3,6 +3,15 @@ import axios from 'axios';
 import {useCookies} from 'react-cookie';
 import {useNavigate} from 'react-router-dom';
 
+let urlLink = null;
+
+if (process.env.REACT_APP_DOCKER_BUILD === 'true') {
+    urlLink = process.env.REACT_APP_API_URL;
+    console.log(`urlLink is ${urlLink}`);
+} else {
+    urlLink = process.env.REACT_APP_LOCAL_URL;
+    console.log("ERROR: DIDNT GET DOCKER BUILD");
+}
 
 export const Auth = () => {
     return (
@@ -23,7 +32,7 @@ const Login = () => {
         event.preventDefault(); //allows us to submit the form without reloading the whole page
 
         try {
-            const response = await axios.post('http://localhost:3010/auth/login', {
+            const response = await axios.post(`${urlLink}auth/login`, {
                 username,
                 password,
             });
@@ -62,7 +71,7 @@ const Register = () => {
         event.preventDefault(); //allows us to submit the form without reloading the whole page
 
         try {
-            await axios.post('http://localhost:3010/auth/register', {
+            await axios.post(`${urlLink}/auth/register`, {
                 username,
                 password,
             });

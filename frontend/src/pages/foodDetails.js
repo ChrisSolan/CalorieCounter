@@ -4,6 +4,16 @@ import { useNavigate } from 'react-router-dom'; //lets us navigate to where we s
 import { useParams } from 'react-router-dom';
 import { useFoodContext } from '../Contexts/FoodContext';
 
+let urlLink = null;
+
+if (process.env.REACT_APP_DOCKER_BUILD === 'true') {
+    urlLink = process.env.REACT_APP_API_URL;
+    console.log(`urlLink is ${urlLink}`);
+} else {
+    urlLink = process.env.REACT_APP_LOCAL_URL;
+    console.log("ERROR: DIDNT GET DOCKER BUILD");
+}
+
 export const FoodDetails = () => { //maybe have a setCategory state var for knowing if a food is for breakfast or other...
     const navigate = useNavigate();
     const [foodItem, setFoodItem] = useState(); //holds the state of an array of FoodItems
@@ -14,7 +24,7 @@ export const FoodDetails = () => { //maybe have a setCategory state var for know
     useEffect(() => {
         const fetchFoodItems = async () => {
             try {
-                const response = await axios.get(`http://localhost:3010/foodItems/${id}`);
+                const response = await axios.get(`${urlLink}foodItems/${id}`);
                 setFoodItem(response.data);
             } catch (err) {
                 console.log(err);
