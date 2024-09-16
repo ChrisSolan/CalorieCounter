@@ -14,7 +14,7 @@ export const FoodProvider = ({ children }) => {
 
   const addFoodItem = (foodItem, meal) => {
     //takes a state as an arugment (prevItems in this case), then spreads it into a new state or array and appends the foodItem at the end
-    setConsumedItems((consumed) => [...consumed, {...foodItem, meal}]); //we add the meal to the foodItem we are adding to consumedItems
+    setConsumedItems((consumed) => [...consumed, {...foodItem, meal, uniqueID: Date.now()}]); //we add the meal to the foodItem we are adding to consumedItems
     setCalories((calories) => calories + foodItem.calories);
     setCarbs((carbs) => carbs + foodItem.macros.carbs);
     setProtein((protein) => protein + foodItem.macros.protein);
@@ -22,8 +22,8 @@ export const FoodProvider = ({ children }) => {
   };
 
   //This is for removing a foodItem from the consumed food items displayed in home.js
-  const removeFoodItem = (foodItem, meal) => {
-    setConsumedItems((consumed) => consumed.filter((item) => !(item._id === foodItem._id && item.meal === meal))); //filters out and creates a new consumedItems array but without the provided foodItem and ID
+  const removeFoodItem = (foodItem, uniqueID) => {
+    setConsumedItems((consumed) => consumed.filter((item) => item.uniqueID !== uniqueID)); //filters out and creates a new consumedItems array but without the foodItem
     setCalories((calories) => calories - foodItem.calories);
     setCarbs((carbs) => carbs - foodItem.macros.carbs);
     setProtein((protein) => protein - foodItem.macros.protein);

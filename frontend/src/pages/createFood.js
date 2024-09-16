@@ -9,7 +9,7 @@ export const CreateFood = () => {
     const userID = window.localStorage.getItem("userID");
     const [cookies, ] = useCookies(['access_token']);
     const [error, setError] = useState(''); // state for handling validation errors for creating the food item
-    const [foodItem, setFoodItem] = useState({ //might need to add a property to store the user who owns the created foodItem in both here and the backend
+    const [foodItem, setFoodItem] = useState({ 
         
         name : '',
         servingSize: {
@@ -97,6 +97,8 @@ export const CreateFood = () => {
             <h2>Create Food Item</h2>
             {cookies.access_token ? (
              <form onSubmit={onSubmit} className='flex flex-col items-center justify-center gap-4 my-[15px]'>
+              {error && <p className="text-red-600">{error}</p>}
+
                 <div className='flex items-center space-x-[10px]'>
                     <label htmlFor='name'>Name: </label>
                     <input type='text' id='name' name='name' className='border-2 border-black p-1 w-full max-w-md' maxLength={32} minLength={8} title='Name must be between 8 and 32 characters' onChange={handleChange}/>
