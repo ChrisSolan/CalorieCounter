@@ -3,6 +3,16 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 
+let urlLink = null;
+
+if (process.env.REACT_APP_DOCKER_BUILD === 'true') {
+    urlLink = process.env.REACT_APP_API_URL;
+    console.log(`urlLink is ${urlLink}`);
+} else {
+    urlLink = process.env.REACT_APP_LOCAL_URL;
+    console.log("ERROR: DIDNT GET DOCKER BUILD");
+}
+
 export const CreateFood = () => {
 
     const navigate = useNavigate();
@@ -74,12 +84,12 @@ export const CreateFood = () => {
         if (!validateForm()) return; //if there is an error, stop before submitting to the database
 
         try {
-            const response = await axios.post('http://localhost:3010/foodItems/', foodItem, 
+            const response = await axios.post(`${urlLink}foodItems/`, foodItem, 
                 { headers: { authorization: cookies.access_token} }
             );
 
             const createdFoodItem = response.data;
-            await axios.put('http://localhost:3010/foodItems/', {
+            await axios.put(`${urlLink}foodItems/`, {
                     foodItemID: createdFoodItem._id,
                     userID
                 },
