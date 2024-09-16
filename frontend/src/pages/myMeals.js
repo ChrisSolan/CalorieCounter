@@ -5,10 +5,8 @@ let urlLink = null;
 
 if (process.env.REACT_APP_DOCKER_BUILD === 'true') {
     urlLink = process.env.REACT_APP_API_URL;
-    console.log(`urlLink is ${urlLink}`);
 } else {
     urlLink = process.env.REACT_APP_LOCAL_URL;
-    console.log("ERROR: DIDNT GET DOCKER BUILD");
 }
 
 export const MyMeals = () => {

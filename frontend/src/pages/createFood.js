@@ -7,10 +7,8 @@ let urlLink = null;
 
 if (process.env.REACT_APP_DOCKER_BUILD === 'true') {
     urlLink = process.env.REACT_APP_API_URL;
-    console.log(`urlLink is ${urlLink}`);
 } else {
     urlLink = process.env.REACT_APP_LOCAL_URL;
-    console.log("ERROR: DIDNT GET DOCKER BUILD");
 }
 
 export const CreateFood = () => {
@@ -118,12 +116,6 @@ export const CreateFood = () => {
                     <label htmlFor='size'>Serving Size: </label>
                     <input type='number' id='size' name='servingSize.size' placeholder="size" className='border-2 border-black p-1 w-full max-w-md' required onChange={handleChange}/>
                     <input type='text' id='unit' name='servingSize.unit' placeholder='unit' className='border-2 border-black p-1 w-full max-w-md' maxLength={32} required onChange={handleChange}/>
-                </div>
-               
-
-                <div className='flex items-center space-x-[10px]'>
-                    <label htmlFor='calories'>Calories: </label>
-                    <input type='number' id='calories' name='calories' className='border-2 border-black p-1 w-full max-w-md' required onChange={handleChange}/>
                 </div>
 
                 <div className='flex items-center space-x-[10px]'>

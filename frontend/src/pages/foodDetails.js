@@ -8,10 +8,8 @@ let urlLink = null;
 
 if (process.env.REACT_APP_DOCKER_BUILD === 'true') {
     urlLink = process.env.REACT_APP_API_URL;
-    console.log(`urlLink is ${urlLink}`);
 } else {
     urlLink = process.env.REACT_APP_LOCAL_URL;
-    console.log("ERROR: DIDNT GET DOCKER BUILD");
 }
 
 export const FoodDetails = () => { //maybe have a setCategory state var for knowing if a food is for breakfast or other...
@@ -39,7 +37,7 @@ export const FoodDetails = () => { //maybe have a setCategory state var for know
         navigate('/');
     }
 
-    if(!foodItem) return <p>Loading...</p>
+    if(!foodItem) return <p>Loading...</p> //this is because it takes a second to load the image
 
     return (
         <div className = "foodDetails bg-[#ACD7EC] min-h-screen">
