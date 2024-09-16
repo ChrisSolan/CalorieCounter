@@ -24,7 +24,6 @@ export const ShowFood = () => {
     useEffect(() => {
         const fetchFoodItems = async () => {
             try {
-                console.log(`urlLink is ${urlLink}`)
                 const response = await axios.get(`${urlLink}foodItems`);
                 setFoodItems(response.data);
             } catch (err) {

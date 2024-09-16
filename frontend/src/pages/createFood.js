@@ -25,7 +25,7 @@ export const CreateFood = () => {
             unit: "",
         },
         calories: 0,
-        macros: {
+        macros: { //Next time, just avoid this headache and dont nest these properties
             carbs: 0,
             fat: 0,
             protein: 0
@@ -37,7 +37,22 @@ export const CreateFood = () => {
     const handleChange = (event) => { //the event happens whenever the input field is changed
         const {name, value} = event.target; //'name' refers to the name attribute from the input tag, value is whatever is in the input field
         //make the name attribute in the input tags the name of the JSON properties
-        setFoodItem({...foodItem, [name]: value}); //updates the property in foodItem that matches the "name" of the input vield with the "value"
+        if (name.startsWith('servingSize.') || name.startsWith('macros.')) {
+            const [property, subProperty] = name.split('.');
+            setFoodItem(prevState => ({
+                ...prevState,
+                [property]: {
+                    ...prevState[property],
+                    [subProperty]: subProperty === 'unit' ? value : parseFloat(value)
+                }
+            }));
+        } else {
+             // Handle non-nested properties
+            setFoodItem(prevState => ({
+                ...prevState,
+                [name]: name === 'calories' ? parseFloat(value) : value
+            }));
+        }
     }
 
     const validateForm = () => {
@@ -47,6 +62,7 @@ export const CreateFood = () => {
         }
 
         //isNaN returns true if the input is not a number
+        console.log("Serving size value: ", foodItem.servingSize.size);
         if (isNaN(foodItem.servingSize.size) || foodItem.servingSize.size <= 0) {
             setError('Serving size must be a positive number.');
             return false;
@@ -139,7 +155,7 @@ export const CreateFood = () => {
                 </div>
                 <div className='flex items-center space-x-[10px]'>
                     <label htmlFor='imageUrl'>imageUrl: </label>
-                    <input type='text' id='imageUrl' name='imageUrl' className='border-2 border-black p-2 w-full max-w-md' onChange={handleChange}/>
+                    <input type='text' id='imageUrl' name='imageUrl' required className='border-2 border-black p-2 w-full max-w-md' onChange={handleChange}/>
                 </div>
 
                 <button type='submit' className='rounded-full bg-[#F1AB86] px-[18px] py-[6px] font-medium'>Create Food Item</button>
